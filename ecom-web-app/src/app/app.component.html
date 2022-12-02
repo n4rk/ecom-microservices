@@ -1,0 +1,23 @@
+<div class="navbar p-5 drop-shadow shadow-md">
+  <div class="container mx-auto flex justify-center items-center">
+    <div class="absolute left-32 logo py-2">
+      <a routerLink="/">
+        <img src="{{logoImg}}" alt="Logo" width="80" class="rounded-lg">
+      </a>
+    </div>
+    <div class="links py-4">
+      <ul class="hidden md:flex">
+        <li><a routerLink="/"  class="font-medium mr-2 py-2 px-4 border-b-2 border-transparent transition ease-in-out duration-200 hover:text-emerald-500 hover:border-emerald-500">Home</a></li>
+        <li><a routerLink="/products"  class="font-medium mx-2 py-2 px-4 border-b-2 border-transparent transition ease-in-out duration-200 hover:text-emerald-500 hover:border-emerald-500">Products</a></li>
+        <li><a routerLink="/customers"  class="font-medium mx-2 py-2 px-4 border-b-2 border-transparent transition ease-in-out duration-200 hover:text-emerald-500 hover:border-emerald-500">Customers</a></li>
+       </ul>
+    </div>
+    <div class="absolute right-32">
+      <form>
+        <input type="text" id="search" class="border border-emerald-500 p-2 rounded-md" placeholder="Search...">
+        <button class="text-emerald-500 border border-emerald-500 ml-4 px-3 py-2 rounded-full"><i class="bi bi-search"></i></button>
+      </form>
+    </div>
+  </div>
+</div>
+<router-outlet></router-outlet>

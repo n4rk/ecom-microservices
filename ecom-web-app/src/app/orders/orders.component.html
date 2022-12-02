@@ -1,0 +1,28 @@
+<div class="orders">
+  <div class="container flex flex-col justify-center mx-auto mt-20">
+    <h1 class="text-4xl text-emerald-500 font-bold mb-5 pb-5"><i class="bi bi-list-ul mr-2"></i> Customer orders list :</h1>
+    <hr class="border-2 border-emerald-50 rounded-full mb-5">
+    <table class="mt-5 mx-20 table-auto border-collapse border border-emerald-100" *ngIf="orders">
+      <thead>
+      <tr class="bg-emerald-800 text-white hover:bg-emerald-900">
+        <th class="p-2 border border-emerald-100">ID</th>
+        <th class="p-2 border border-emerald-100">Customer ID</th>
+        <th class="p-2 border border-emerald-100">Status</th>
+        <th class="p-2 border border-emerald-100">Date</th>
+        <th class="p-2 border border-emerald-100">Details</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr class="hover:bg-emerald-50" *ngFor="let o of orders._embedded.orders">
+        <td class="text-center font-medium p-2 border border-emerald-100">{{ o.id }}</td>
+        <td class="text-center p-2 border border-emerald-100">{{ o.customerId }}</td>
+        <td class="p-2 border border-emerald-100">{{ o.status }}</td>
+        <td class="p-2 border border-emerald-100">{{ o.createdAt | date:'d MMMM yyyy' }}</td>
+        <td class="text-center p-2 border border-emerald-100">
+          <button class="btn rounded-full px-3 py-2 border-2" (click)="getOrderDetails(o)">Details</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

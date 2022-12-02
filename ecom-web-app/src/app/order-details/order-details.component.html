@@ -1,0 +1,56 @@
+<div class="order-details">
+  <div class="container flex flex-col justify-center mx-auto my-20" *ngIf="orderDetails as od">
+    <h1 class="text-4xl text-emerald-500 font-bold mb-5 pb-5"><i class="bi bi-list-nested mr-2"></i> Order Details :</h1>
+    <hr class="mb-5">
+    <div class="order">
+      <div class="card flex justify-center border-2 border-blue-200 bg-blue-100 rounded-lg p-2 mx-auto my-5 py-5">
+        <div class="mx-5 px-10 py-3 bg-white rounded-full">Order ID : <b>{{od.id}}</b></div>
+        <div class="mx-5 px-10 py-3 bg-white rounded-full">Customer ID : <b>{{od.customerId}}</b></div>
+        <div class="mx-5 px-10 py-3 bg-white rounded-full">Status : <b>{{od.status}}</b></div>
+        <div class="mx-5 px-10 py-3 bg-white rounded-full">Date : <b>{{od.createdAt | date}}</b></div>
+      </div>
+      <div class="details flex w-full gap-10">
+        <div class="customer border-2 border-blue-200 bg-blue-100 rounded-lg p-2 mx-auto my-5 w-1/2 h-fit">
+          <div class="m-4 p-4 text-xl font-bold text-blue-600 border-b-2 border-b-blue-600"><h1>Customer Info :</h1></div>
+          <div class="m-4 p-4 bg-blue-50 rounded-md">ID : <b>{{od.customer.id}}</b></div>
+          <div class="m-4 p-4 bg-blue-50 rounded-md">Customer ID : <b>{{od.customer.name}}</b></div>
+          <div class="m-4 p-4 bg-blue-50 rounded-md">Status : <b>{{od.customer.email}}</b></div>
+        </div>
+        <div class="products flex flex-col border-2 border-blue-200 bg-blue-100 rounded-lg p-2 mx-auto my-5 w-1/2 h-fit">
+          <div class="m-4 p-4 text-xl font-bold text-blue-600 border-b-2 border-b-blue-600"><h1>Products Info :</h1></div>
+          <div class="flex flex-col" *ngIf="orderDetails.productsList!=0;else noProducts">
+            <table class="table-auto mx-4 border-2 border-blue-600 border-collapse text-center">
+              <thead>
+              <tr class="text-white bg-blue-600">
+                <th class="p-2">ID</th>
+                <th class="p-2">Name</th>
+                <th class="p-2">Quantity</th>
+                <th class="p-2">Price</th>
+                <th class="p-2">Discount</th>
+                <th class="p-2">Amount</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr class="px-5 border bg-blue-50 hover:bg-white" *ngFor="let p of orderDetails.productsList">
+                <td class="p-2">{{p.product.id}}</td>
+                <td class="p-2">{{p.product.name}}</td>
+                <td class="p-2">{{p.quantity}}</td>
+                <td class="p-2">{{p.price | number:'1.2-2'}} DH</td>
+                <td class="p-2">{{(p.discount)*100 | number:'1.1-1'}}%</td>
+                <td class="p-2">{{p.amount | number:'1.2-2'}} DH</td>
+              </tr>
+              </tbody>
+            </table>
+
+            <div class="m-4 p-4 bg-blue-50 rounded-md text-lg text-center text-blue-600">Total = <b>{{od.total | number:'1.2-2'}} DH</b></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<ng-template #noProducts>
+  <div class="border-2 border-red-600 m-4 p-4 bg-red-50 rounded-md font-bold text-lg text-center text-red-600">No Products Found !</div>
+</ng-template>
